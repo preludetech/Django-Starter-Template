@@ -1,0 +1,46 @@
+{% extends "allauth/layouts/base.html" %}
+{% load i18n allauth %}
+{% block body %}
+
+<div class="grid grid-cols-3 max-w-7xl mx-auto">
+
+    <nav class="p-4 flex flex-col space-y-2">
+        {% url 'account_email' as email_url_ %}
+        {% if email_url_ %}
+        <a class="button-white" href="{{ email_url_ }}">{% trans "Change Email" %}</a>
+        {% endif %}
+
+        {% url 'account_change_password' as change_password_url_ %}
+        {% if change_password_url_ %}
+        <a class="button-white" href="{{ change_password_url_ }}">{% trans "Change Password" %}</a>
+        {% endif %}
+
+        {% url 'socialaccount_connections' as connections_url_ %}
+        {% if connections_url_ %}
+        <a class="button-white" href="{{ connections_url_ }}">{% trans "Account Connections" %}</a>
+        {% endif %}
+
+        {% url 'mfa_index' as mfa_url_ %}
+        {% if mfa_url_ %}
+        <a class="button-white" href="{{ mfa_url_ }}">{% trans "Two-Factor Authentication" %}</a>
+        {% endif %}
+
+        {% url 'usersessions_list' as usersessions_list_url_ %}
+        {% if usersessions_list_url_ %}
+        <a class="button-white" href="{{ usersessions_list_url_ }}">{% trans "Sessions" %}</a>
+        {% endif %}
+
+
+
+        {% include "_partials.html#logout-button" %}
+
+    </nav>
+
+    <section class="p-4 col-span-2 space-y-2">
+        {% block content %}{% endblock %}
+    </section>
+
+</div>
+
+
+{% endblock body %}

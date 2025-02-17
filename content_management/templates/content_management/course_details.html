@@ -1,0 +1,15 @@
+{% extends "_base.html" %}
+{% load markdown_extras %}
+
+{% block content %}
+
+<h1>
+    {{course.title}}
+</h1>
+{{course.level}}
+
+{{ course.blurb | render_md }}
+
+
+
+{% endblock %}

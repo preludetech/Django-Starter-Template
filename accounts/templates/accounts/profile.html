@@ -1,0 +1,23 @@
+{% extends "allauth/layouts/manage.html" %}
+{% load i18n %}
+{% load allauth account %}
+
+{% block head_title %}Profile{% endblock %}
+{% block content %}
+{% element h1 %}
+Profile
+{% endelement %}
+
+{% element form form=form method="post" action="" tags="" %}
+{% slot body %}
+{% csrf_token %}
+{% element fields form=form unlabeled=True %}
+{% endelement %}
+{% endslot %}
+{% slot actions %}
+{% element button type="submit" tags="prominent,login" %}
+{% trans "Save" %}
+{% endelement %}
+{% endslot %}
+{% endelement %}
+{% endblock content %}

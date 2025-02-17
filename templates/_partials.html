@@ -1,0 +1,11 @@
+{% load partials %}
+
+{% partialdef logout-button %}
+    {% url 'account_logout' as logout_url_ %}
+    {% if logout_url_ %}
+        <form method="post" action="{{logout_url_}}">
+            {% csrf_token %}
+            <button type="submit" class="button-white w-full">Sign Out</button>
+        </form>
+    {% endif %}
+{% endpartialdef %}

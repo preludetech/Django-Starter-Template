@@ -1,0 +1,132 @@
+{% load i18n allauth %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content System - {% block head_title %}
+        {% endblock head_title %}</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        @layer components {
+            h1 {
+                @apply text-3xl font-bold
+            }
+
+            h2 {
+                @apply text-2xl font-bold
+            }
+
+            a {
+                @apply underline text-blue-600
+            }
+
+            .button-white {
+                @apply bg-white text-blue-600 font-semibold px-4 py-2 rounded-lg shadow hover:bg-gray-100 no-underline text-center
+            }
+
+            .button-blue {
+                @apply bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-blue-500 no-underline text-center
+            }
+
+            .alert-10 {
+                /* DEBUG */
+                @apply border-gray-700 bg-gray-100
+            }
+
+            .alert-20 {
+                /* INFO */
+                @apply border-blue-700 bg-blue-100
+            }
+
+            .alert-25 {
+                /* SUCCESS */
+                @apply border-green-700 bg-green-100
+
+            }
+
+             .alert-30 {
+                /* WARNING */
+                @apply border-orange-700 bg-orange-100
+
+            }
+
+            .alert-40 {
+                /* ERROR */
+                @apply border-red-700 bg-red-100
+            }
+
+        }
+    </style>
+    {% block extra_head %}
+    {% endblock extra_head %}
+</head>
+
+<body class="bg-gray-100 flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-blue-600 p-4 shadow-md flex justify-between items-center">
+        <a href="/">
+            <h1 class="text-2xl font-bold text-white">Content System</h1>
+        </a>
+        <nav class="space-x-1 flex flex-row">
+
+            {% if user.is_authenticated %}
+
+            <a class="button-white" href="{% url 'account_profile' %}">{% trans "Profile" %}</a>
+
+            {% include "_partials.html#logout-button" %}
+            
+            {% else %}
+            {% url 'account_login' as login_url_ %}
+            {% if login_url_ %}
+            <a class="button-white" href="{{ login_url_ }}">{% trans "Sign In" %}</a>
+            {% endif %}
+            {% url 'account_signup' as signup_url_ %}
+            {% if signup_url_ %}
+            <a class="button-white" href="{{ signup_url_ }}">{% trans "Sign Up" %}</a>
+            {% endif %}
+            {% endif %}
+
+        </nav>
+    </header>
+
+
+
+    {% if messages %}
+    <div class="space-y-2 mx-auto pt-2 border-">
+
+        {% for message in messages %}
+
+        {% element alert level=message.level %}
+        {% slot message %}
+        {{ message }}
+        {% endslot %}
+        {% endelement %}
+
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Main Content -->
+    {% block body %}
+    <main class="flex-grow container mx-auto p-4">
+        {% block content %}
+        Replace this in child templates
+        {% endblock content %}
+    </main>
+    {% endblock body %}
+
+    {% block extra_body %}
+    {% endblock extra_body %}
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-4 text-center">
+        <p>&copy; 2025 Content system. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
