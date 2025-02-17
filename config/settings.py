@@ -34,6 +34,7 @@ CSRF_TRUSTED_ORIGINS = []
 
 INSTALLED_APPS = [
     "template_partials",
+    "taggit",
     "content_management.apps.ContentManagementConfig",
     "accounts.apps.AccountsConfig",
     "grappelli",  # must be before contrib.admin
@@ -53,6 +54,8 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "allauth.socialaccount.providers.github",
 ]
+
+TAGGIT_CASE_INSENSITIVE = True
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 

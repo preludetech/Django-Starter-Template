@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Content System - {% block head_title %}
+    <title>Prelude Learn - {% block head_title %}
         {% endblock head_title %}</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 
@@ -70,7 +70,7 @@
     <!-- Header -->
     <header class="bg-blue-600 p-4 shadow-md flex justify-between items-center">
         <a href="/">
-            <h1 class="text-2xl font-bold text-white">Content System</h1>
+            <h1 class="text-2xl font-bold text-white">Prelude Learn</h1>
         </a>
         <nav class="space-x-1 flex flex-row">
 
@@ -79,7 +79,7 @@
             <a class="button-white" href="{% url 'account_profile' %}">{% trans "Profile" %}</a>
 
             {% include "_partials.html#logout-button" %}
-            
+
             {% else %}
             {% url 'account_login' as login_url_ %}
             {% if login_url_ %}
@@ -124,7 +124,7 @@
     {% endblock extra_body %}
     <!-- Footer -->
     <footer class="bg-gray-800 text-white p-4 text-center">
-        <p>&copy; 2025 Content system. All rights reserved.</p>
+        <p>&copy; 2025 Prelude.tech. All rights reserved.</p>
     </footer>
 
 </body>

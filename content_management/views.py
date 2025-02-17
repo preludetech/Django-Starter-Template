@@ -27,9 +27,12 @@ def course_detail(request, course_id):
 #     return render(request, "content_management/index.html", context=context)
 
 
-def content_item_detail(request, content_item_id):
+def content_item_detail(request, course_id, content_item_position):
     """This will display a single content item"""
-    content_item = get_object_or_404(models.ContentItem, pk=content_item_id)
+    course_content = get_object_or_404(
+        models.CourseContent, course_id=course_id, position=content_item_position
+    )
+    content_item = course_content.content_item
     if (
         content_item.visibility != content_item.PUBLIC
         and not request.user.is_authenticated
@@ -42,4 +45,6 @@ def content_item_detail(request, content_item_id):
         return redirect(f"{reverse('account_login')}?next={request.path}")
 
     context = {"content_item": content_item}
-    return render(request, "content_management/detail.html", context=context)
+    return render(
+        request, "content_management/content_item_detail.html", context=context
+    )

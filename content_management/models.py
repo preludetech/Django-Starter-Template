@@ -1,4 +1,8 @@
 from django.db import models
+from taggit.managers import TaggableManager
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class Course(models.Model):
@@ -15,9 +19,17 @@ class Course(models.Model):
     ]
     level = models.CharField(choices=LEVEL_CHOICES, max_length=12)
 
-    # tags
+    tags = TaggableManager()
+
     def __str__(self):
         return self.title
+
+    def content_items(self):
+        content = [
+            o.content_item
+            for o in self.content.order_by("position").prefetch_related("content_item")
+        ]
+        return content
 
 
 class ContentItem(models.Model):
@@ -46,3 +58,9 @@ class CourseContent(models.Model):
 
     class Meta:
         ordering = ["position"]
+
+
+class CourseAccess(models.Model):
+    datetime_created = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    course = models.ForeignKey(Course, on_delete=models.PROTECT)
