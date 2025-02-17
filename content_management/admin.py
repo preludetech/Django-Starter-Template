@@ -16,6 +16,8 @@ class CourseContentInline(GrappelliSortableHiddenMixin, admin.TabularInline):
 
     readonly_fields = ["visibility"]
 
+    classes = ("grp-collapse grp-closed",)
+
     def visibility(self, obj):
         return obj.content_item.visibility
 
