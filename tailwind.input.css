@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+
+@layer components {
+    h1 {
+        @apply text-3xl font-bold
+    }
+
+    h2 {
+        @apply text-2xl font-bold
+    }
+
+    a {
+        @apply underline text-blue-600
+    }
+
+    .button-white {
+        @apply bg-white text-blue-600 font-semibold px-4 py-2 rounded-lg shadow hover:bg-gray-100 no-underline text-center
+    }
+
+    .button-blue {
+        @apply bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-blue-500 no-underline text-center
+    }
+
+    .alert-10 {
+        /* DEBUG */
+        @apply border-gray-700 bg-gray-100
+    }
+
+    .alert-20 {
+        /* INFO */
+        @apply border-blue-700 bg-blue-100
+    }
+
+    .alert-25 {
+        /* SUCCESS */
+        @apply border-green-700 bg-green-100
+    }
+
+    .alert-30 {
+        /* WARNING */
+        @apply border-orange-700 bg-orange-100
+    }
+
+    .alert-40 {
+        /* ERROR */
+        @apply border-red-700 bg-red-100
+    }
+
+}

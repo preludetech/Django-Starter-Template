@@ -11,9 +11,11 @@
 - HTMX 
 - Alpine 
 - TailwindCSS
+- markdown custom widgets. Eg Youtube. Flip. Etc
+https://akveo.github.io/eva-icons/#/
 
 
-TODO:
+TODO Critical:
 - courses index: 
     - make nice. Big block. Show blurb. Maybe picture
 - course page:
@@ -27,3 +29,9 @@ permissions:
 - auth
 - purchase 
 
+HOST!! or integrate...
+Integrate because:
+    - good seo ?
+
+Later:
+- markdown widgets 

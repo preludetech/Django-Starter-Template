@@ -22,3 +22,4 @@ test-results/
 .pytest_cache/
 
 gitignore/
+static/vendor
