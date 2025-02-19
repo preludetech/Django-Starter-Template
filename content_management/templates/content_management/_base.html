@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<div class="max-w-7xl mx-auto bg-white p-6 rounded-lg shadow-md ">
+
+    {% for breadcrumb in breadcrumbs %}
+    <a href="{{breadcrumb.1}}">{{breadcrumb.0}} </a>
+
+    {% if not forloop.last %} | {% endif %}
+
+
+    {% endfor %}
+
+
+
+    {% block app-content %}
+
+    {% endblock %}
+
+</div>
+
+{% endblock %}

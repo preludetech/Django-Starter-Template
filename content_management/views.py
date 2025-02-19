@@ -1,19 +1,29 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
 from django.contrib import messages
 
+from django.urls import reverse
 from . import models
+
+
+def _breadcrumbs():
+    return [("Courses", reverse("course_index"))]
 
 
 def course_index(request):
     courses = models.Course.objects.all()
-    context = {"courses": courses}
+    context = {"courses": courses, "breadcrumbs": _breadcrumbs()}
     return render(request, "content_management/course_index.html", context=context)
 
 
 def course_detail(request, course_id):
     course = get_object_or_404(models.Course, pk=course_id)
-    context = {"course": course}
+    breadcrumbs = _breadcrumbs() + [
+        (course.title, reverse("course_detail", args=[course_id]))
+    ]
+    context = {
+        "course": course,
+        "breadcrumbs": breadcrumbs,
+    }
     return render(request, "content_management/course_details.html", context=context)
 
 
@@ -44,7 +54,15 @@ def content_item_detail(request, course_id, content_item_position):
         )
         return redirect(f"{reverse('account_login')}?next={request.path}")
 
-    context = {"content_item": content_item}
+    breadcrumbs = _breadcrumbs() + [
+        (course_content.course.title, reverse("course_detail", args=[course_id])),
+        (content_item.title, request.get_full_path()),
+    ]
+
+    context = {
+        "content_item": content_item,
+        "breadcrumbs": breadcrumbs,
+    }
     return render(
         request, "content_management/content_item_detail.html", context=context
     )

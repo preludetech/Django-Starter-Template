@@ -1,14 +1,23 @@
-{% extends "_base.html" %}
+{% extends "content_management/_base.html" %}
+{% load partials %}
 
-{% block content %}
+{% partialdef course %}
+
+
+<li class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition">
+    <a href="{% url 'course_detail' item.id %}"
+        class="text-xl font-semibold text-blue-600 hover:underline">{{item.title}}
+    </a>
+</li>
+
+{% endpartialdef %}
+
+
+{% block app-content %}
 
 <ul class="space-y-2">
     {% for item in courses %}
-    <li class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition">
-        <a href="{% url 'course_detail' item.id %}"
-            class="text-xl font-semibold text-blue-600 hover:underline">{{item.title}}
-        </a>
-    </li>
+    {% partial course %}
     {% empty %}
     Nothing to see here
     {% endfor %}
@@ -20,4 +29,4 @@
 </div>
 {% endif %}
 
-{% endblock content%}
+{% endblock %}

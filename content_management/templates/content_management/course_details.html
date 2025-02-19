@@ -1,56 +1,55 @@
-{% extends "_base.html" %}
+{% extends "content_management/_base.html" %}
 {% load markdown_extras %}
 
-{% block content %}
-
-<div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
-
-    <h1 class="text-2xl font-bold text-gray-800">{{course.title}}</h1>
-    <span
-        class="inline-block bg-blue-500 text-white text-sm font-medium px-3 py-1 mt-3 rounded-full">{{course.level}}</span>
-    <div class="text-gray-600 mt-2 border rounded-md border-gray-200 p-2">{{ course.blurb | render_md }}</div>
+{% block app-content %}
 
 
 
-    <div class="mt-3 space-x-2">
-
-        {% for tag in course.tags.all %}
-        <span class="inline-block bg-blue-500 text-white text-sm font-medium px-3 py-1 rounded-full">
-            #{{tag.name}}
-        </span>
-        {% endfor %}
-    </div>
-
-    <div class="mt-6">
-        <h2 class="text-xl font-semibold text-gray-700">Course Content</h2>
-        <div class="mt-4 space-y-4">
-            {% for content in course.content_items %}
-
-            <div>
-
-                <a href="{% url 'content_item_detail' course.id forloop.counter %}" class="no-underline">
-
-                    <div
-                        class="flex items-center justify-between bg-gray-50 p-3 rounded-md shadow-sm cursor-pointer hover:shadow-lg ">
-                        <div>
-                            <span class="text-gray-800 text-2xl pr-2	">{{forloop.counter}}</span>
-                            <span class="text-gray-800 	">{{content.title}}</span>
-                        </div>
-                        <span class="text-green-600 ">✔</span>
-                        <!-- <span class="text-blue-500">▶</span>
-                    <span class="text-gray-400">○</span> -->
-                    </div>
-                </a>
-            </div>
-
-            {% endfor %}
-
-        </div>
-    </div>
+<h1 class="text-2xl font-bold text-gray-800">{{course.title}}</h1>
+<span
+    class="inline-block bg-blue-500 text-white text-sm font-medium px-3 py-1 mt-3 rounded-full">{{course.level}}</span>
+<div class="text-gray-600 mt-2 border rounded-md border-gray-200 p-2">{{ course.blurb | render_md }}</div>
 
 
 
+<div class="mt-3 space-x-2">
 
-
+    {% for tag in course.tags.all %}
+    <span class="inline-block bg-blue-500 text-white text-sm font-medium px-3 py-1 rounded-full">
+        #{{tag.name}}
+    </span>
+    {% endfor %}
 </div>
+
+<div class="mt-6">
+    <h2 class="text-xl font-semibold text-gray-700">Course Content</h2>
+    <div class="mt-4 space-y-4">
+        {% for content in course.content_items %}
+
+        <div>
+
+            <a href="{% url 'content_item_detail' course.id forloop.counter %}" class="no-underline">
+
+                <div
+                    class="flex items-center justify-between bg-gray-50 p-3 rounded-md shadow-sm cursor-pointer hover:shadow-lg ">
+                    <div>
+                        <span class="text-gray-800 text-2xl pr-2	">{{forloop.counter}}</span>
+                        <span class="text-gray-800 	">{{content.title}}</span>
+                    </div>
+                    <span class="text-green-600 ">✔</span>
+                    <!-- <span class="text-blue-500">▶</span>
+                    <span class="text-gray-400">○</span> -->
+                </div>
+            </a>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+
+
 {% endblock %}

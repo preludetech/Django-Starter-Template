@@ -1,10 +1,9 @@
-{% extends "_base.html" %}
+{% extends "content_management/_base.html" %}
 {% load markdown_extras %}
 
-{% block content %}
-
+{% block app-content %}
 <h1 class="text-2xl pb-3">{{content_item.title}}</h1>
 
 {{content_item.content|render_md}}
 
-{% endblock content%}
+{% endblock %}
