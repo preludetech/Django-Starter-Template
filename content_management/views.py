@@ -40,7 +40,7 @@ def course_detail(request, course_id):
 def content_item_detail(request, course_id, content_item_position):
     """This will display a single content item"""
     course_content = get_object_or_404(
-        models.CourseContent, course_id=course_id, position=content_item_position
+        models.CourseContent, course_id=course_id, position=content_item_position - 1
     )
     content_item = course_content.content_item
     if (

@@ -5,9 +5,10 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-# @admin.register(models.ContentItem)
-# class ContentItemAdmin(admin.ModelAdmin):
-#     pass
+
+@admin.register(models.ContentItem)
+class ContentItemAdmin(admin.ModelAdmin):
+    pass
 
 
 class CourseContentInline(GrappelliSortableHiddenMixin, admin.TabularInline):
