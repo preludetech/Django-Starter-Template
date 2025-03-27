@@ -51,9 +51,10 @@ functions = {
 #     return result
 
 
+# Ref: https://alberand.com/markdown-custom-tags.html
 class CustomBlocks(BlockProcessor):
 
-    RE_PATTERN = "{%(.*)%}"
+    RE_PATTERN = "{$(.*)$}"
 
     def test(self, parent, block):
         if re.search(self.RE_PATTERN, block):

@@ -59,10 +59,14 @@ def content_item_detail(request, course_id, content_item_position):
         (content_item.title, request.get_full_path()),
     ]
 
+    content = content_item.render_content(request)
+
     context = {
         "content_item": content_item,
         "breadcrumbs": breadcrumbs,
+        "content": content,
     }
+
     return render(
         request, "content_management/content_item_detail.html", context=context
     )
