@@ -18,7 +18,7 @@
 - Browser reload 
 
 
-
+Todo: playwright
 
 
 
@@ -46,3 +46,10 @@ HOST!! or integrate...
 Integrate because:
     - good seo ?
 
+
+
+Look at other templates:
+
+- https://github.com/lincolnloop/django-layout/blob/main/pyproject.toml 
+- https://github.com/jefftriplett/django-startproject 
+- https://github.com/wsvincent/lithium/blob/main/pyproject.toml

@@ -73,7 +73,7 @@ class CourseContent(models.Model):
     content_item = models.ForeignKey(
         ContentItem, on_delete=models.CASCADE, related_name="course_order"
     )
-    position = models.PositiveSmallIntegerField("Position", null=True)
+    position = models.PositiveSmallIntegerField("Position", null=True, default=1)
 
     class Meta:
         ordering = ["position"]

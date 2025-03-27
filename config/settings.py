@@ -235,6 +235,8 @@ AUTH_USER_MODEL = "accounts.User"
 # charts = charts.js
 
 UNFOLD = {
+    "SITE_TITLE": "Content stuff",
+    "SITE_HEADER": "Content stuff",
     "DASHBOARD_CALLBACK": "config.unfold.dashboard_callback",
     "SHOW_VIEW_ON_SITE": False,
     "SIDEBAR": {
@@ -244,16 +246,36 @@ UNFOLD = {
             {
                 "items": [
                     {
-                        "title": _("Model index"),
-                        "icon": "celebration",
+                        "title": _("Home"),
+                        "icon": "home",
                         "link": reverse_lazy("admin:index"),
                     },
                     {
                         "title": _("Dashboard"),
-                        "icon": "celebration",
+                        "icon": "monitoring",
                         "link": reverse_lazy("admin:dashboard"),
                     },
                 ]
+            },
+            {
+                "title": _("Content"),
+                "collapsible": True,
+                "items": [
+                    {
+                        "title": _("Courses"),
+                        "icon": "local_library",
+                        "link": reverse_lazy(
+                            "admin:content_management_course_changelist"
+                        ),
+                    },
+                    {
+                        "title": _("Content"),
+                        "icon": "description",
+                        "link": reverse_lazy(
+                            "admin:content_management_contentitem_changelist"
+                        ),
+                    },
+                ],
             },
             {
                 "title": _("Accounts"),
@@ -271,23 +293,6 @@ UNFOLD = {
                     },
                 ],
             },
-            # {
-            #     "title": _("Polls"),
-            #     "separator": False,
-            #     "collapsible": True,
-            #     "items": [
-            #         {
-            #             "title": _("Questions"),
-            #             "icon": "question_mark",
-            #             "link": reverse_lazy("admin:polls_question_changelist"),
-            #         },
-            #         {
-            #             "title": _("Choices"),
-            #             "icon": "checklist",
-            #             "link": reverse_lazy("admin:polls_choice_changelist"),
-            #         },
-            #     ],
-            # },
         ],
     },
 }
