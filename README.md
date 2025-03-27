@@ -4,13 +4,26 @@
 - Custom user model: Email + pass 
 - AllAuth login: Email pass + Github
 - Allauth html email templates
-- https://github.com/sehmaschine/django-grappelli
-- Markdown rendering 
 
+- unfold 
+    - added custom dashboards so you can see how
 
+- Markdown rendering: render cotton components
+- Cotton 
 - HTMX 
 - Alpine 
 - TailwindCSS
+- Crispy Tailwind
+- Django debug toolbar
+- Browser reload 
+
+
+
+
+
+
+
+
 - markdown custom widgets. Eg Youtube. Flip. Etc
 https://akveo.github.io/eva-icons/#/
 
@@ -33,5 +46,3 @@ HOST!! or integrate...
 Integrate because:
     - good seo ?
 
-Later:
-- markdown widgets 

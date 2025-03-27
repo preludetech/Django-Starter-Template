@@ -15,6 +15,7 @@ dependencies = [
     "django-grappelli>=4.0.1",
     "django-taggit>=6.1.0",
     "django-template-partials>=24.4",
+    "django-unfold>=0.53.0",
     "lxml>=5.3.1",
     "markdown>=3.7",
     "markdown-headdown>=0.1.3",

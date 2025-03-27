@@ -27,7 +27,6 @@ urlpatterns = (
     [
         path("", include("content_management.urls")),
         path("admin/", admin.site.urls),
-        path("grappelli/", include("grappelli.urls")),  # grappelli URLS
         path("accounts/", include("allauth.urls")),
         path("accounts/", include("accounts.urls")),
         path("__reload__/", include("django_browser_reload.urls")),

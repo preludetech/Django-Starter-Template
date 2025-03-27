@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import environ
-
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +39,15 @@ INSTALLED_APPS = [
     "taggit",
     "content_management.apps.ContentManagementConfig",
     "accounts.apps.AccountsConfig",
-    "grappelli",  # must be before contrib.admin
+    "admin_dashboards",
+    # "grappelli",  # must be before contrib.admin
+    "unfold",  # before django.contrib.admin
+    # "unfold.contrib.filters",  # optional, if special filters are needed
+    # "unfold.contrib.forms",  # optional, if special form elements are needed
+    # "unfold.contrib.inlines",  # optional, if special inlines are needed
+    # "unfold.contrib.import_export",  # optional, if django-import-export package is used
+    # "unfold.contrib.guardian",  # optional, if django-guardian package is used
+    # "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -220,3 +229,65 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 AUTH_USER_MODEL = "accounts.User"
+
+
+# icons = https://fonts.google.com/icons
+# charts = charts.js
+
+UNFOLD = {
+    "DASHBOARD_CALLBACK": "config.unfold.dashboard_callback",
+    "SHOW_VIEW_ON_SITE": False,
+    "SIDEBAR": {
+        "show_search": True,
+        "show_all_applications": True,
+        "navigation": [
+            {
+                "items": [
+                    {
+                        "title": _("Model index"),
+                        "icon": "celebration",
+                        "link": reverse_lazy("admin:index"),
+                    },
+                    {
+                        "title": _("Dashboard"),
+                        "icon": "celebration",
+                        "link": reverse_lazy("admin:dashboard"),
+                    },
+                ]
+            },
+            {
+                "title": _("Accounts"),
+                "collapsible": True,
+                "items": [
+                    {
+                        "title": _("Users"),
+                        "icon": "person",
+                        "link": reverse_lazy("admin:accounts_user_changelist"),
+                    },
+                    {
+                        "title": _("Groups"),
+                        "icon": "groups",
+                        "link": reverse_lazy("admin:auth_group_changelist"),
+                    },
+                ],
+            },
+            # {
+            #     "title": _("Polls"),
+            #     "separator": False,
+            #     "collapsible": True,
+            #     "items": [
+            #         {
+            #             "title": _("Questions"),
+            #             "icon": "question_mark",
+            #             "link": reverse_lazy("admin:polls_question_changelist"),
+            #         },
+            #         {
+            #             "title": _("Choices"),
+            #             "icon": "checklist",
+            #             "link": reverse_lazy("admin:polls_choice_changelist"),
+            #         },
+            #     ],
+            # },
+        ],
+    },
+}

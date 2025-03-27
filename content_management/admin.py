@@ -1,40 +1,50 @@
 from . import models
 from django.contrib import admin
-from grappelli.forms import GrappelliSortableHiddenMixin
 from django.contrib.auth import get_user_model
+from unfold.admin import StackedInline, TabularInline
+
+
+from unfold.admin import ModelAdmin
+
 
 User = get_user_model()
 
 
 @admin.register(models.ContentItem)
-class ContentItemAdmin(admin.ModelAdmin):
+class ContentItemAdmin(ModelAdmin):
     pass
 
 
-class CourseContentInline(GrappelliSortableHiddenMixin, admin.TabularInline):
-    fields = ("content_item", "visibility", "position")
+# class CourseContentInline(GrappelliSortableHiddenMixin, TabularInline):
+class CourseContentInline(TabularInline):
     model = models.CourseContent
+    hide_title = True
 
-    readonly_fields = ["visibility"]
+    readonly_fields = [
+        "visibility",
+    ]
 
     classes = ("grp-collapse grp-closed",)
+
+    ordering_field = "position"
+    hide_ordering_field = True
 
     def visibility(self, obj):
         return obj.content_item.visibility
 
 
 @admin.register(models.Course)
-class CourseAdmin(admin.ModelAdmin):
+class CourseAdmin(ModelAdmin):
     inlines = [CourseContentInline]
 
 
-class CourseAccessInline(admin.TabularInline):
+class CourseAccessInline(TabularInline):
     model = models.CourseAccess
     readonly_fields = ["datetime_created"]
 
 
 @admin.register(models.User)
-class UserAdmin(admin.ModelAdmin):
+class UserAdmin(ModelAdmin):
     inlines = [CourseAccessInline]
 
     fieldsets = [
