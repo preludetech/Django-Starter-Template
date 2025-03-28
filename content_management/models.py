@@ -48,25 +48,6 @@ class ContentItem(models.Model):
     def __str__(self):
         return self.title
 
-    def render_content(self, request, context=None):
-        from django.template import loader
-        import tempfile
-        from pathlib import Path
-        import markdown
-        from django.utils.safestring import mark_safe
-
-        temp = tempfile.NamedTemporaryFile(
-            prefix="template_",
-        )
-
-        temp.write(str.encode(self.content))
-        temp.seek(0)
-        content = loader.render_to_string(
-            Path(temp.name).stem, context={}, request=request, using=None
-        )
-        md = markdown.Markdown(extensions=["fenced_code", "mdx_headdown"])
-        return mark_safe(md.convert(content))
-
 
 class CourseContent(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="content")

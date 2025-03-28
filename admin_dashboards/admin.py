@@ -3,6 +3,7 @@ from django.urls import path
 from unfold.admin import ModelAdmin
 from .models import X
 from . import views
+from taggit.models import Tag
 
 
 @admin.register(X)
@@ -15,3 +16,11 @@ class CustomAdmin(ModelAdmin):
         return super().get_urls() + [
             path("dashboard", dashboard_view, name="dashboard"),
         ]
+
+
+admin.site.unregister(Tag)
+
+
+@admin.register(Tag)
+class GroupAdmin(ModelAdmin):
+    pass

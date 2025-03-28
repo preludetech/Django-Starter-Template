@@ -1,5 +1,4 @@
 {% extends "content_management/_base.html" %}
-{% load markdown_extras %}
 
 {% block app-content %}
 
@@ -8,7 +7,7 @@
 <h1 class="text-2xl font-bold text-gray-800">{{course.title}}</h1>
 <span
     class="inline-block bg-blue-500 text-white text-sm font-medium px-3 py-1 mt-3 rounded-full">{{course.level}}</span>
-<div class="text-gray-600 mt-2 border rounded-md border-gray-200 p-2">{{ course.blurb | render_md }}</div>
+<div class="text-gray-600 mt-2 border rounded-md border-gray-200 p-2">{{ blurb }}</div>
 
 
 

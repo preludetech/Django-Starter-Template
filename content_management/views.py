@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-
 from django.urls import reverse
 from . import models
+from .markdown_utils import render_markdown
 
 
 def _breadcrumbs():
@@ -20,21 +20,9 @@ def course_detail(request, course_id):
     breadcrumbs = _breadcrumbs() + [
         (course.title, reverse("course_detail", args=[course_id]))
     ]
-    context = {
-        "course": course,
-        "breadcrumbs": breadcrumbs,
-    }
+    blurb = render_markdown(course.blurb, request)
+    context = {"course": course, "breadcrumbs": breadcrumbs, "blurb": blurb}
     return render(request, "content_management/course_details.html", context=context)
-
-
-# def index(request):
-#     """This will list out all the content items"""
-#     content_items = models.ContentItem.objects.all()
-#     if not request.user.is_authenticated:
-#         content_items = content_items.filter(is_public=True)
-#     context = {"content_items": content_items}
-
-#     return render(request, "content_management/index.html", context=context)
 
 
 def content_item_detail(request, course_id, content_item_position):
@@ -43,6 +31,7 @@ def content_item_detail(request, course_id, content_item_position):
         models.CourseContent, course_id=course_id, position=content_item_position - 1
     )
     content_item = course_content.content_item
+
     if (
         content_item.visibility != content_item.PUBLIC
         and not request.user.is_authenticated
@@ -59,7 +48,7 @@ def content_item_detail(request, course_id, content_item_position):
         (content_item.title, request.get_full_path()),
     ]
 
-    content = content_item.render_content(request)
+    content = render_markdown(content_item.content, request)
 
     context = {
         "content_item": content_item,

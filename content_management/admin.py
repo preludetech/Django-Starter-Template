@@ -2,9 +2,11 @@ from . import models
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from unfold.admin import StackedInline, TabularInline
-
+from taggit.managers import TaggableManager
 
 from unfold.admin import ModelAdmin
+from unfold import widgets
+from taggit.forms import TagWidgetMixin
 
 
 User = get_user_model()
@@ -15,7 +17,6 @@ class ContentItemAdmin(ModelAdmin):
     pass
 
 
-# class CourseContentInline(GrappelliSortableHiddenMixin, TabularInline):
 class CourseContentInline(TabularInline):
     model = models.CourseContent
     hide_title = True
@@ -33,9 +34,17 @@ class CourseContentInline(TabularInline):
         return obj.content_item.visibility
 
 
+class UnfoldTaggitWidget(TagWidgetMixin, widgets.UnfoldAdminTextInputWidget):
+    pass
+
+
 @admin.register(models.Course)
 class CourseAdmin(ModelAdmin):
     inlines = [CourseContentInline]
+
+    formfield_overrides = {
+        TaggableManager: {"widget": UnfoldTaggitWidget},
+    }
 
 
 class CourseAccessInline(TabularInline):

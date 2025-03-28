@@ -5,6 +5,6 @@
   },
   "scripts": {
     "tailwind_watch": "npx @tailwindcss/cli -i ./tailwind.input.css -o ./static/vendor/tailwind.output.css --watch",
-    "tailwind_watch": "npx @tailwindcss/cli -i ./tailwind.input.css -o ./static/vendor/tailwind.output.css"
+    "tailwind_build": "npx @tailwindcss/cli -i ./tailwind.input.css -o ./static/vendor/tailwind.output.css"
   }
 }
