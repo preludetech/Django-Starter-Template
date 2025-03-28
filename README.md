@@ -1,55 +1,78 @@
-# Features 
+# Modern Frontend Django template repo 
 
-- UV for package management 
-- Custom user model: Email + pass 
-- AllAuth login: Email pass + Github
-- Allauth html email templates
+There are many excellent Django templates out there. They all have different priorities and opinions. 
 
-- unfold 
-    - added custom dashboards so you can see how
+This template repo is different from the rest in that it's primary focus is frontend development. 
 
-- Markdown rendering: render cotton components
-- Cotton 
-- HTMX 
-- Alpine 
-- TailwindCSS
-- Crispy Tailwind
-- Django debug toolbar
-- Browser reload 
+## Using the template
 
+You could simply use this repo as a starting point for your own work - download it however you choose, and start adding your own code to the mix. 
 
-Todo: playwright
+Or you can poke around and use this as a learning resource. Make sure you understand how everything was wired up and why certain decisions were made.  
 
+The latter is the best bet if you want to grow your own skills - it's likely that you will have different preferences, you might want to lay out your project in different ways and use different tools. That's perfectly normal. 
 
+## Learning about the tools 
 
+This template was brought to you by [Prelude](https://prelude.tech).
 
+TODO
 
-- markdown custom widgets. Eg Youtube. Flip. Etc
-https://akveo.github.io/eva-icons/#/
+## Honorary mentions  
 
-
-TODO Critical:
-- courses index: 
-    - make nice. Big block. Show blurb. Maybe picture
-- course page:
-    - link back to index 
-- content page:
-    - breadcrumbs 
-    - make nice 
-
-permissions:
-- public 
-- auth
-- purchase 
-
-HOST!! or integrate...
-Integrate because:
-    - good seo ?
-
-
-
-Look at other templates:
+Here are a few other Django templates that are worth learning from
 
 - https://github.com/lincolnloop/django-layout/blob/main/pyproject.toml 
 - https://github.com/jefftriplett/django-startproject 
 - https://github.com/wsvincent/lithium/blob/main/pyproject.toml
+
+## Components, features and decisions 
+
+### The `config` directory 
+
+
+
+### Custom User Model 
+
+### Package management with `uv` 
+
+### Installing Tailwind using npm
+
+### Crispy tailwind 
+
+### AllAuth 
+
+- Email/pass authentication
+- Basic email template in place for comms 
+- Login with Github enabled
+
+### Django Admin customisation with Unfold
+
+- Using Unfold instead of the default admin
+- Added custom pages and dashboards
+- Minor customisations
+
+### Django template partials 
+
+### Cotton 
+
+### Django debug toolbar 
+
+### Browser reload 
+
+### Fancy markdown rendering 
+
+### HTMX 
+
+### AlpineJS 
+
+### Django Debug Toolbar
+
+### Playwright
+
+### Environmental variables 
+
+## TODO 
+
+There are a lot of cool things that can still be added to this template:
+
