@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "content_management.apps.ContentManagementConfig",
     "accounts.apps.AccountsConfig",
     "admin_dashboards",
+    "chat",
     # "grappelli",  # must be before contrib.admin
     "unfold",  # before django.contrib.admin
     # "unfold.contrib.filters",  # optional, if special filters are needed

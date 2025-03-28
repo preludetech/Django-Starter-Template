@@ -5,4 +5,11 @@
 
 {{ content }}
 
+
+<div hx-get="{% url 'conversation' content_item.id %}" hx-trigger="load delay:1s" hx-swap="outerHTML">
+    <!-- TODO: rather use generic foreign key -->
+    Loading...
+</div>
+
+
 {% endblock %}
