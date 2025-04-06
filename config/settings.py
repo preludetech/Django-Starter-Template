@@ -301,3 +301,7 @@ UNFOLD = {
 }
 
 COTTON_SNAKE_CASED_NAMES = False
+
+
+# For dev only. In prod, use redis
+CHANNEL_LAYERS = {"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}}
