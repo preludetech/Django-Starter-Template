@@ -1,9 +1,20 @@
 {% load tailwind_filters %}
 {% load partials %}
 
+{% partialdef hx-chat-bubble %}
+
+<div hx-swap-oob="beforeend" id="chat_messages">
+    {% partial chat-bubble %}
+    <script>
+        scrollChatDown();
+    </script>
+</div>
+
+{% endpartialdef %}
+
 {% partialdef chat-bubble %}
 <div class="flex items-start justify-end space-x-2">
-    {% if request.user != message.from_user %}
+    {% if user != message.from_user %}
     <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm">You</div>
     {% endif %}
 
@@ -11,7 +22,7 @@
         {{ message.message }}
     </div>
 
-    {% if request.user == message.from_user %}
+    {% if user == message.from_user %}
     <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm">Me</div>
     {% endif %}
 </div>
@@ -32,27 +43,34 @@
     -->
 
     <div id="chat_messages" class="h-56 overflow-y-auto space-y-4 p-4">
+        {% with user=request.user %}
         {% for message in messages %}
         {% partial chat-bubble %}
         {% endfor %}
+        {% endwith %}
     </div>
 
 
-    <form hx-post="{% url 'conversation_send_message' conversation_name %}" hx-target="#chat_messages"
-        hx-swap="beforeend" hx-on::after-request="this.reset(); scrollChatDown();">
-        {% csrf_token %}
-        {{form | crispy}}
-        <input type="submit" class="button" />
-    </form>
+    <div ws-connect="/ws/conversation/{{conversation_name}}/">
 
+        <form id="chat-form" ws-send="" hx-on:htmx:wsAfterSend="this.reset(); scrollChatDown();">
+            {% csrf_token %}
+            {{form | crispy}}
+            <input type="submit" class="button" />
+        </form>
+    </div>
 
 </div>
 
 <script>
     function scrollChatDown() {
         const box = document.getElementById('chat_messages');
-        box.scrollTop = box.scrollHeight;
+        box.scrollTop = box.scrollHeight + 20;
     }
+
+    document.getElementById("chat-form").addEventListener("htmx:wsAfterSend", function (event) {
+        this.reset();
+    });
 
     scrollChatDown()
 </script>

@@ -13,12 +13,15 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'vendor/tailwind.output.css' %}">
 
-    <script src="https://unpkg.com/htmx.org@2.0.4"
+    <!-- <script src="https://unpkg.com/htmx.org@2.0.4"
         integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/htmx-ext-ws@2.0.2"
         integrity="sha384-vuKxTKv5TX/b3lLzDKP2U363sOAoRo5wSvzzc3LJsbaQRSBSS+3rKKHcOx5J8doU"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
+
+    <script src="https://unpkg.com/htmx.org@1.8.5"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -27,7 +30,7 @@
     {% endblock extra_head %}
 </head>
 
-<body class="bg-gray-100 flex flex-col min-h-screen">
+<body class="bg-gray-100 flex flex-col min-h-screen" hx-ext="ws">
 
     <!-- Header -->
     <header class="bg-blue-600 p-4 shadow-md flex justify-between items-center">
@@ -59,7 +62,7 @@
 
 
     {% if messages %}
-    <div class="space-y-2 mx-auto pt-2 border-">
+    <div class="space-y-2 mx-auto pt-2 border">
 
         {% for message in messages %}
 
@@ -90,5 +93,13 @@
     </footer>
 
 </body>
+
+<script>
+    htmx.defineExtension("eventlog", {
+        onEvent: function (name, evt) {
+            console.log("Event " + name + " was triggered!")
+        }
+    });
+</script>
 
 </html>
