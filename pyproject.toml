@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "channels[daphne]>=4.2.2",
     "crispy-tailwind>=1.0.3",
     "django>=5.1.6",
     "django-allauth[socialaccount]>=65.4.1",

@@ -34,6 +34,7 @@ CSRF_TRUSTED_ORIGINS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",  # for Django Channels
     "django_cotton.apps.SimpleAppConfig",
     "template_partials.apps.SimpleAppConfig",
     "taggit",
@@ -122,7 +123,8 @@ TEMPLATES = [
 ]
 
 
-WSGI_APPLICATION = "config.wsgi.application"
+# WSGI_APPLICATION = "config.wsgi.application"
+ASGI_APPLICATION = "config.asgi.application"
 
 
 # Database
@@ -297,3 +299,5 @@ UNFOLD = {
         ],
     },
 }
+
+COTTON_SNAKE_CASED_NAMES = False
