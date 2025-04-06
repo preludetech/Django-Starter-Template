@@ -28,19 +28,27 @@
 </div>
 {% endpartialdef %}
 
+{% partialdef hx-users-online %}
+<div id="users-online-count" hx-swap-oob="outerHTML">
+    {% partial users-online %}
+</div>
+{% endpartialdef %}
+
+
+{% partialdef users-online %}
+Users online: {{online_count}}
+{% endpartialdef %}
+
+
+
+
 <div class="border flex-1 p-5 ">
 
     <h2 class="text-center">Chat</h2>
-    <div>3 users online</div>
-
-    <!-- <div class="flex items-start space-x-2">
-        <div class="w-8 h-8 bg-purple-400 rounded-full flex items-center justify-center text-white text-sm">Aaa</div>
-        <div class="bg-gray-200 p-2 rounded-lg max-w-xs">
-            <p class="text-sm">Hey everyone!</p>
-        </div>
+    <div id="users-online-count">
+        {% partial users-online %}
     </div>
 
-    -->
 
     <div id="chat_messages" class="h-56 overflow-y-auto space-y-4 p-4">
         {% with user=request.user %}

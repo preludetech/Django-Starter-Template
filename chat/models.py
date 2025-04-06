@@ -8,6 +8,10 @@ User = get_user_model()
 class Conversation(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
+    users_online = models.ManyToManyField(
+        User, related_name="online_in_conversations", blank=True
+    )
+
 
 class Message(models.Model):
     conversation = models.ForeignKey(

@@ -9,7 +9,12 @@ def get_conversation(request, name):
     conversation, _ = models.Conversation.objects.get_or_create(name=name)
     form = ChatMessageForm()
     messages = conversation.messages.all()[:20]
-    context = {"messages": messages, "form": form, "conversation_name": name}
+    context = {
+        "messages": messages,
+        "form": form,
+        "conversation_name": name,
+        "online_count": conversation.users_online.count(),
+    }
     return render(request, "chat/conversation.html", context=context)
 
 
