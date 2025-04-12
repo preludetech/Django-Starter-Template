@@ -27,7 +27,7 @@
         {% endif %}
 
         <div class="bg-blue-500 text-white p-2 rounded-lg max-w-xs text-sm">
-            {{message.id}} {{ message.message }}
+            {{ message.message }}
         </div>
 
         {% if user == message.from_user %}
@@ -37,7 +37,7 @@
     {% endpartialdef %}
 
     {% partialdef hx-users-online %}
-    <div id="users-online-count" hx-swap-oob="outerHTML" class="text-sm">
+    <div id="users-online-count" hx-swap-oob="outerHTML" class="text-sm pb-2">
         {% partial users-online %}
     </div>
     {% endpartialdef %}
