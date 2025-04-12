@@ -91,18 +91,12 @@ This makes use of Cotton components
 
 ### AlpineJS 
 
-### Django Debug Toolbar
 
 ### Playwright
 
 ### Environmental variables 
 
-## TODO 
-
-There are a lot of cool things that can still be added to this template:
+### Postgres development database 
 
 
-
-- [ ] Playwright 
-- [ ] Upgrade HTMX 
-- [ ] Upgrade Django to 5.2 
+### Environmental variables  
