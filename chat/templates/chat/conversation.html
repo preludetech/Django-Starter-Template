@@ -13,72 +13,77 @@
 {% endpartialdef %}
 
 {% partialdef chat-bubble %}
-<div class="flex items-start justify-end space-x-2">
-    {% if user != message.from_user %}
-    <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm">You</div>
-    {% endif %}
 
-    <div class="bg-blue-500 text-white p-2 rounded-lg max-w-xs text-sm">
-        {{ message.message }}
+{% if user == message.from_user %}
+<div class="flex items-start justify-end space-x-2 ">
+    {% else %}
+    <div class="flex items-start justify-start space-x-2 ">
+        {% endif %}
+
+
+        {% if user != message.from_user %}
+        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm">
+            {{message.from_user.email}}</div>
+        {% endif %}
+
+        <div class="bg-blue-500 text-white p-2 rounded-lg max-w-xs text-sm">
+            {{message.id}} {{ message.message }}
+        </div>
+
+        {% if user == message.from_user %}
+        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm">Me</div>
+        {% endif %}
     </div>
+    {% endpartialdef %}
 
-    {% if user == message.from_user %}
-    <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm">Me</div>
-    {% endif %}
-</div>
-{% endpartialdef %}
-
-{% partialdef hx-users-online %}
-<div id="users-online-count" hx-swap-oob="outerHTML">
-    {% partial users-online %}
-</div>
-{% endpartialdef %}
-
-
-{% partialdef users-online %}
-Users online: {{online_count}}
-{% endpartialdef %}
-
-
-
-
-<div class="border flex-1 p-5 ">
-
-    <h2 class="text-center">Chat</h2>
-    <div id="users-online-count">
+    {% partialdef hx-users-online %}
+    <div id="users-online-count" hx-swap-oob="outerHTML">
         {% partial users-online %}
     </div>
+    {% endpartialdef %}
 
 
-    <div id="chat_messages" class="h-56 overflow-y-auto space-y-4 p-4">
-        {% with user=request.user %}
-        {% for message in messages %}
-        {% partial chat-bubble %}
-        {% endfor %}
-        {% endwith %}
+    {% partialdef users-online %}
+    Users online: {{online_count}}
+    {% endpartialdef %}
+
+    <div class="border flex-1 p-5 ">
+
+        <h2 class="text-center">Chat</h2>
+        <div id="users-online-count">
+            {% partial users-online %}
+        </div>
+
+
+        <div id="chat_messages" class="h-56 overflow-y-auto space-y-4 p-4">
+            {% with user=request.user %}
+            {% for message in messages %}
+            {% partial chat-bubble %}
+            {% endfor %}
+            {% endwith %}
+        </div>
+
+
+        <div ws-connect="/ws/conversation/{{conversation_name}}/">
+
+            <form id="chat-form" ws-send="" hx-on:htmx:wsAfterSend="this.reset(); scrollChatDown();">
+                {% csrf_token %}
+                {{form | crispy}}
+                <input type="submit" class="button" />
+            </form>
+        </div>
+
     </div>
 
+    <script>
+        function scrollChatDown() {
+            const box = document.getElementById('chat_messages');
+            box.scrollTop = box.scrollHeight + 20;
+        }
 
-    <div ws-connect="/ws/conversation/{{conversation_name}}/">
+        document.getElementById("chat-form").addEventListener("htmx:wsAfterSend", function (event) {
+            this.reset();
+        });
 
-        <form id="chat-form" ws-send="" hx-on:htmx:wsAfterSend="this.reset(); scrollChatDown();">
-            {% csrf_token %}
-            {{form | crispy}}
-            <input type="submit" class="button" />
-        </form>
-    </div>
-
-</div>
-
-<script>
-    function scrollChatDown() {
-        const box = document.getElementById('chat_messages');
-        box.scrollTop = box.scrollHeight + 20;
-    }
-
-    document.getElementById("chat-form").addEventListener("htmx:wsAfterSend", function (event) {
-        this.reset();
-    });
-
-    scrollChatDown()
-</script>
+        scrollChatDown()
+    </script>

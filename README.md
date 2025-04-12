@@ -16,7 +16,13 @@ The latter is the best bet if you want to grow your own skills - it's likely tha
 
 This template was brought to you by [Prelude](https://prelude.tech).
 
-TODO
+Prelude offers well crafted, expert supported learning experiences designed to set you up for long term success.
+
+We take a different approach to teaching. Rather than relying on traditional, one-size-fits-all methods, we design our programs using years of experience, evidence-based practices, and real learner feedback.
+
+Our learning experiences are immersive, self-paced, supported by experts, and deeply human. We’re committed to your long-term success and growth—not just short-term outcomes.
+
+Education is not the filling of a pail, but the [planting of a seed].
 
 ## Honorary mentions  
 
@@ -26,11 +32,28 @@ Here are a few other Django templates that are worth learning from
 - https://github.com/jefftriplett/django-startproject 
 - https://github.com/wsvincent/lithium/blob/main/pyproject.toml
 
+## Installation 
+
+To get everything running:
+
+... 
+
 ## Components, features and decisions 
+
+This section will give an explanation of the major tools used and the decisions made. 
+
+The code itself is a bit contrived - it is a very basic content management system. The main idea here is to demonstrate a few tools and get them to play nicely together.
+
+Here is what the project does:
+
+- Administrators can log into the admin panel to edit the content
+- Regular users can sign up or sign in, either using email addresses and passwords, or through Github
+- Users can view content. Some content is only visible to logged in users 
+- Users can chat to each other about any piece of content. Every piece of content has a real time chat window
 
 ### The `config` directory 
 
-
+The first decision is to do with project layout. The `config` directory contains all our project configuration. 
 
 ### Custom User Model 
 
@@ -52,6 +75,8 @@ Here are a few other Django templates that are worth learning from
 - Added custom pages and dashboards
 - Minor customisations
 
+### HTMX 
+
 ### Django template partials 
 
 ### Cotton 
@@ -62,7 +87,7 @@ Here are a few other Django templates that are worth learning from
 
 ### Fancy markdown rendering 
 
-### HTMX 
+This makes use of Cotton components
 
 ### AlpineJS 
 
@@ -76,3 +101,8 @@ Here are a few other Django templates that are worth learning from
 
 There are a lot of cool things that can still be added to this template:
 
+
+
+- [ ] Playwright 
+- [ ] Upgrade HTMX 
+- [ ] Upgrade Django to 5.2 

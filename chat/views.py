@@ -8,7 +8,9 @@ from .forms import ChatMessageForm
 def get_conversation(request, name):
     conversation, _ = models.Conversation.objects.get_or_create(name=name)
     form = ChatMessageForm()
-    messages = conversation.messages.all()[:20]
+    messages = sorted(
+        conversation.messages.all()[:20], key=lambda x: x.created_datetime
+    )
     context = {
         "messages": messages,
         "form": form,
