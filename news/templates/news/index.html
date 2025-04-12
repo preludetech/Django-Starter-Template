@@ -1,0 +1,41 @@
+{% extends "news/_base.html" %}
+
+
+{% partialdef article %}
+
+
+<c-surface class="space-y-2   p-3">
+    <p class="text-sm">
+        {{article.date}}
+    </p>
+    <p class="font-bold pl-2 text-2xl">
+        {{article.title}}
+    </p>
+    <p class="text-right">
+
+        <a href="{% url 'article' article.id %}">Read ></a>
+    </p>
+</c-surface>
+
+{% endpartialdef%}
+
+
+{% block app-content %}
+
+<h1 class="pb-3 text-center">News</h1>
+
+
+{% for article in articles %}
+
+{% partial article %}
+
+{% empty %}
+
+<c-surface class="text-center space-y-5">
+    <h1 class=" text-4xl">No news is good news</h1>
+    <p class="text-2xl">There are no matching news articles</p>
+</c-surface>
+
+{% endfor %}
+
+{% endblock %}

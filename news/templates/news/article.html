@@ -1,0 +1,44 @@
+{% extends "news/_base.html" %}
+{% block app-content %}
+
+<div class="pb-3">
+
+    <a href="{% url 'index' %}">
+        &lt; Back</a>
+</div>
+<div class="lg:grid lg:grid-cols-3 lg:gap-3">
+    <c-surface class="space-y-5 lg:col-span-2">
+
+        <div>
+            <p>{{article.date}}</p>
+
+            <h1 class="pl-3">
+                {{ article.title | title }}
+            </h1>
+        </div>
+
+        <hr class="text-gray-400">
+
+        <div class="space-y-3 px-5">
+            {{content}}
+        </div>
+    </c-surface>
+
+    <c-surface class="flex flex-col">
+        <h2 class="text-center text-3xl">Chat</h2>
+
+        {% if user.is_authenticated %}
+
+        <div hx-get="{% url 'conversation' article.id %}" hx-trigger="load" hx-swap="outerHTML">
+            Loading...
+        </div>
+
+        {%else%}
+        <div class="flex-grow flex items-center">
+            <p class="text-center text-3xl font-bold text-gray-500">Sign in or Sign up to chat about this article!</p>
+        </div>
+        {% endif %}
+    </c-surface>
+</div>
+
+{% endblock %}

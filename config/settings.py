@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django_cotton.apps.SimpleAppConfig",
     "template_partials.apps.SimpleAppConfig",
     "taggit",
-    "content_management.apps.ContentManagementConfig",
+    "news",
     "accounts.apps.AccountsConfig",
     "admin_dashboards",
     "chat",
@@ -261,22 +261,13 @@ UNFOLD = {
                 ]
             },
             {
-                "title": _("Content"),
+                "title": _("News"),
                 "collapsible": True,
                 "items": [
                     {
-                        "title": _("Courses"),
+                        "title": _("Articles"),
                         "icon": "local_library",
-                        "link": reverse_lazy(
-                            "admin:content_management_course_changelist"
-                        ),
-                    },
-                    {
-                        "title": _("Content"),
-                        "icon": "description",
-                        "link": reverse_lazy(
-                            "admin:content_management_contentitem_changelist"
-                        ),
+                        "link": reverse_lazy("admin:news_article_changelist"),
                     },
                 ],
             },

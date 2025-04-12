@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.urls import reverse
 from . import models
-from .markdown_utils import render_markdown
+from ..markdown_utils import render_markdown
 
 
 def _breadcrumbs():

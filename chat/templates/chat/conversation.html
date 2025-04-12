@@ -37,7 +37,7 @@
     {% endpartialdef %}
 
     {% partialdef hx-users-online %}
-    <div id="users-online-count" hx-swap-oob="outerHTML">
+    <div id="users-online-count" hx-swap-oob="outerHTML" class="text-sm">
         {% partial users-online %}
     </div>
     {% endpartialdef %}
@@ -47,15 +47,14 @@
     Users online: {{online_count}}
     {% endpartialdef %}
 
-    <div class="border flex-1 p-5 ">
+    <div class="flex flex-col p-5 h-full">
 
-        <h2 class="text-center">Chat</h2>
         <div id="users-online-count">
             {% partial users-online %}
         </div>
 
 
-        <div id="chat_messages" class="h-56 overflow-y-auto space-y-4 p-4">
+        <div id="chat_messages" class="h-56 overflow-y-auto space-y-4 p-4 flex-grow">
             {% with user=request.user %}
             {% for message in messages %}
             {% partial chat-bubble %}
@@ -69,7 +68,9 @@
             <form id="chat-form" ws-send="" hx-on:htmx:wsAfterSend="this.reset(); scrollChatDown();">
                 {% csrf_token %}
                 {{form | crispy}}
-                <input type="submit" class="button" />
+                <div class="flex justify-end">
+                    <input type="submit" class="button-ghost" name="Send" />
+                </div>
             </form>
         </div>
 

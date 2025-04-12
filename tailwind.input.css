@@ -7,19 +7,23 @@
     }
 
     h2 {
-        @apply text-2xl font-bold
+        @apply text-xl font-bold
     }
 
     a {
         @apply underline text-blue-600
     }
 
+    .button-ghost {
+        @apply text-blue-600 font-semibold px-4 py-2 no-underline text-center cursor-pointer
+    }
+
     .button-white {
-        @apply bg-white text-blue-600 font-semibold px-4 py-2 rounded-lg shadow hover:bg-gray-100 no-underline text-center
+        @apply bg-white text-blue-600 font-semibold px-4 py-2 rounded-lg shadow hover:bg-gray-100 no-underline text-center cursor-pointer
     }
 
     .button-blue {
-        @apply bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-blue-500 no-underline text-center
+        @apply bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-blue-500 no-underline text-center cursor-pointer
     }
 
     .alert-10 {
