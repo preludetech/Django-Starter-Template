@@ -1,3 +1,5 @@
+# based on https://github.com/pytest-dev/pytest-django/issues/1027
+
 from functools import partial
 from channels.routing import get_default_application
 from daphne.testing import DaphneProcess
@@ -55,7 +57,7 @@ class ChannelsLiveServer:
 
 
 @pytest.fixture
-def channels_liver_server(request):
+def channels_liver_server(request, transactional_db):
     server = ChannelsLiveServer()
     request.addfinalizer(server.stop)
     return server

@@ -44,7 +44,10 @@ def log_user_in(live_server, page, user):
     page.get_by_role("button", name="Sign In").click()
 
 
-@pytest.mark.django_db
+def expect_online_count(page, count):
+    expect(page.locator("#users-online-count")).to_have_text(f"Users online: {count}")
+
+
 def test_chat(channels_liver_server, browser):
     live_server = channels_liver_server
 
@@ -62,5 +65,28 @@ def test_chat(channels_liver_server, browser):
     log_user_in(live_server, page1, user1)
     log_user_in(live_server, page2, user2)
 
-    breakpoint()
     url = reverse_url(live_server, "article", args=[article.id])
+
+    page1.goto(url)
+
+    expect_online_count(page1, 1)
+    page2.goto(url)
+    expect_online_count(page1, 2)
+    expect_online_count(page2, 2)
+
+    message_from_1 = "This is a message from one to two"
+    message_from_2 = "This is a message from two to one"
+
+    page1.get_by_role("textbox", name="Message*").click()
+    page1.get_by_role("textbox", name="Message*").fill(message_from_1)
+    page1.get_by_role("button", name="Submit").click()
+
+    page1.get_by_text(message_from_1)
+    page2.get_by_text(message_from_1)
+
+    page2.get_by_role("textbox", name="Message*").click()
+    page2.get_by_role("textbox", name="Message*").fill(message_from_2)
+    page2.get_by_role("button", name="Submit").click()
+
+    page1.get_by_text(message_from_2)
+    page2.get_by_text(message_from_2)
