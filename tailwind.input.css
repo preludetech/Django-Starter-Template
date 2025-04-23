@@ -3,15 +3,31 @@
 
 @layer components {
     h1 {
-        @apply text-3xl font-bold
+        @apply text-4xl font-bold
     }
 
     h2 {
+        @apply text-3xl font-bold
+    }
+
+    h3 {
+        @apply text-2xl font-bold
+    }
+
+    h4 {
         @apply text-xl font-bold
     }
 
     a {
         @apply underline text-blue-600
+    }
+
+    ul {
+        @apply list-disc list-inside ml-6 space-y-2
+    }
+
+    ol {
+        @apply list-decimal list-inside space-y-2
     }
 
     .button-ghost {

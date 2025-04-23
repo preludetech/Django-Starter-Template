@@ -251,9 +251,9 @@ AUTH_USER_MODEL = "accounts.User"
 # charts = charts.js
 
 UNFOLD = {
-    "SITE_TITLE": "Content stuff",
-    "SITE_HEADER": "Content stuff",
-    "DASHBOARD_CALLBACK": "config.unfold.dashboard_callback",
+    "SITE_TITLE": "News",
+    "SITE_HEADER": "News",
+    # "DASHBOARD_CALLBACK": "config.unfold.dashboard_callback",
     "SHOW_VIEW_ON_SITE": False,
     "SIDEBAR": {
         "show_search": True,
@@ -320,3 +320,6 @@ STATICFILES_FINDERS = (
 
 
 STATIC_ROOT = "/static"
+
+
+MARKDOWN_TEMPLATE_RENDER_ON = False
