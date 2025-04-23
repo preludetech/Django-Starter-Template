@@ -37,12 +37,10 @@ INSTALLED_APPS = [
     "daphne",  # for Django Channels
     "django_cotton.apps.SimpleAppConfig",
     "template_partials.apps.SimpleAppConfig",
-    "taggit",
     "news",
     "accounts.apps.AccountsConfig",
     "admin_dashboards",
     "chat",
-    # "grappelli",  # must be before contrib.admin
     "unfold",  # before django.contrib.admin
     # "unfold.contrib.filters",  # optional, if special filters are needed
     # "unfold.contrib.forms",  # optional, if special form elements are needed
