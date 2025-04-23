@@ -100,3 +100,17 @@ This makes use of Cotton components
 
 
 ### Environmental variables  
+
+
+### Django Compressor 
+
+https://django-compressor.readthedocs.io/en/latest/
+
+
+
+## TODO:
+
+- Document all the things 
+- Install HTMX etc using npm rather than using a CDN 
+- Tidy up code 
+- Make GUI prettier

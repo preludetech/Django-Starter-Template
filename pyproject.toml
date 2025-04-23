@@ -10,6 +10,7 @@ dependencies = [
     "django>=5.2",
     "django-allauth[socialaccount]>=65.4.1",
     "django-browser-reload>=1.18.0",
+    "django-compressor>=4.5.1",
     "django-cotton>=2.0.1",
     "django-debug-toolbar>=5.0.1",
     "django-environ>=0.12.0",

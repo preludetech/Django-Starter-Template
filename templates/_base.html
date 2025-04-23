@@ -1,5 +1,6 @@
 {% load i18n allauth %}
 {% load static %}
+{% load compress %}
 
 
 <!DOCTYPE html>
@@ -11,13 +12,13 @@
     <title>Prelude Learn - {% block head_title %}
         {% endblock head_title %}</title>
 
+    {% compress css %}
+
     <link rel="stylesheet" type="text/css" href="{% static 'vendor/tailwind.output.css' %}">
 
-    <!-- 
-    <script src="https://unpkg.com/htmx-ext-ws@2.0.2"
-        integrity="sha384-vuKxTKv5TX/b3lLzDKP2U363sOAoRo5wSvzzc3LJsbaQRSBSS+3rKKHcOx5J8doU"
-        crossorigin="anonymous"></script> -->
+    {% endcompress %}
 
+    {% compress js %}
 
     <script src="https://unpkg.com/htmx.org@2.0.4"
         integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
@@ -25,11 +26,9 @@
 
     <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
 
-
-
-
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+    {% endcompress %}
 
     {% block extra_head %}
     {% endblock extra_head %}

@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.github",
+    "compressor",
 ]
 
 TAGGIT_CASE_INSENSITIVE = True
@@ -308,3 +309,14 @@ COTTON_SNAKE_CASED_NAMES = False
 
 # For dev only. In prod, use redis
 CHANNEL_LAYERS = {"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}}
+
+
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    # other finders..
+    "compressor.finders.CompressorFinder",
+)
+
+
+STATIC_ROOT = "/static"
