@@ -114,3 +114,4 @@ https://django-compressor.readthedocs.io/en/latest/
 - Install HTMX etc using npm rather than using a CDN 
 - Tidy up code 
 - Make GUI prettier
+- Normal Playwright helloworld 
