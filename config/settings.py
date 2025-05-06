@@ -320,4 +320,5 @@ STATICFILES_FINDERS = (
 STATIC_ROOT = "/static"
 
 
-MARKDOWN_TEMPLATE_RENDER_ON = False
+MARKDOWN_TEMPLATE_RENDER_ON = True
+MARKDOWN_ALLOWED_TAGS = {"c-surface", "c-picture", "c-card", "c-youtube"}

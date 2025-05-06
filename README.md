@@ -223,6 +223,13 @@ Note that this is fairly experimental. It works by creating temporary template f
 
 You can turn this functionality on or off using the `MARKDOWN_TEMPLATE_RENDER_ON` setting. It is off by default.
 
+### Nh3 
+
+
+We use [NH3](https://nh3.readthedocs.io/en/latest/) for sanitizing markdown before we render and display it.
+
+The tags whitelist is controlled using the `MARKDOWN_ALLOWED_TAGS` setting
+
 ### AlpineJS 
 
 We use [Alpine](https://alpinejs.dev/) to add minimal state management to our frontends. 

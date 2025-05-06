@@ -4,10 +4,13 @@ from pathlib import Path
 import markdown
 from django.utils.safestring import mark_safe
 from django.conf import settings
+import nh3
 
 
 def render_markdown(markdown_text, request, context=None):
     context = context or {}
+
+    markdown_text = nh3.clean(markdown_text, tags=settings.MARKDOWN_ALLOWED_TAGS)
 
     if settings.MARKDOWN_TEMPLATE_RENDER_ON:
 
@@ -22,19 +25,6 @@ def render_markdown(markdown_text, request, context=None):
         )
     else:
         content = markdown_text
+
     md = markdown.Markdown(extensions=["fenced_code", "mdx_headdown"])
     return mark_safe(md.convert(content))
-
-
-# def render_markdown(markdown_text, request, context=None):
-#     django_engine = engines["django"]
-#     template = django_engine.from_string(markdown_text)
-#     # content = template.render_to_string(
-#     #     context=context,
-#     #     request=request,
-#     # )
-
-#     content = template.render(context, request)
-
-#     md = markdown.Markdown(extensions=["fenced_code", "mdx_headdown"])
-#     return mark_safe(md.convert(content))
